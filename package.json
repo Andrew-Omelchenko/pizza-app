@@ -1,0 +1,32 @@
+{
+  "name": "weather-app-components",
+  "version": "1.0.0",
+  "description": "Landing page for Weather App",
+  "main": "index.js",
+  "scripts": {
+    "compile:sass": "node-sass sass/style.scss css/style.css -w",
+    "build": "webpack",
+    "watch": "webpack --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Andrew-Omelchenko/weather-app-components.git"
+  },
+  "author": "Andrew Omelchenko",
+  "license": "MIT",
+  "private": true,
+  "bugs": {
+    "url": "https://github.com/Andrew-Omelchenko/weather-app-components/issues"
+  },
+  "homepage": "https://github.com/Andrew-Omelchenko/weather-app-components#readme",
+  "devDependencies": {
+    "eslint": "^4.18.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-import": "^2.8.0",
+    "gulp": "^3.9.1",
+    "html-webpack-plugin": "^2.30.1",
+    "node-sass": "^4.7.2",
+    "webpack": "^3.11.0"
+  }
+}
