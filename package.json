@@ -1,7 +1,7 @@
 {
-  "name": "weather-app-components",
+  "name": "pizza-app",
   "version": "1.0.0",
-  "description": "Landing page for Weather App",
+  "description": "Landing page for Pizza App",
   "main": "index.js",
   "scripts": {
     "compile:sass": "node-sass sass/style.scss css/style.css -w",
@@ -10,15 +10,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Andrew-Omelchenko/weather-app-components.git"
+    "url": "git+https://github.com/Andrew-Omelchenko/pizza-app.git"
   },
   "author": "Andrew Omelchenko",
   "license": "MIT",
   "private": true,
   "bugs": {
-    "url": "https://github.com/Andrew-Omelchenko/weather-app-components/issues"
+    "url": "https://github.com/Andrew-Omelchenko/pizza-app/issues"
   },
-  "homepage": "https://github.com/Andrew-Omelchenko/weather-app-components#readme",
+  "homepage": "https://github.com/Andrew-Omelchenko/pizza-app#readme",
   "devDependencies": {
     "eslint": "^4.18.0",
     "eslint-config-airbnb-base": "^12.1.0",
