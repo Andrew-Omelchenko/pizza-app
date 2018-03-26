@@ -25,7 +25,10 @@ class Component {
     return this.host;
   }
 
+  componentReveivedProps(nextProps) {}
+
   update(nextProps) {
+    this.componentReveivedProps(nextProps);
     this.props = nextProps;
     return this._render();
   }
