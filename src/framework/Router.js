@@ -41,6 +41,11 @@ class Router extends Component {
         return;
       }
 
+      if (nextRoute.authorized && !nextRoute.authorized()) {
+        this.navigateTo("/login");
+        return;
+      }
+
       if (nextRoute.redirectTo) {
         this.navigateTo(nextRoute.redirectTo);
         return;

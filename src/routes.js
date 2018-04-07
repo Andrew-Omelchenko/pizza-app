@@ -1,22 +1,40 @@
+import { AUTH_SERVICE } from "./services/AuthService";
+import App from "./components/App";
 import Login from "./components/Login";
-import Login1 from "./components/Login1";
+import Register from "./components/Register";
+import User from "./components/User";
 
 const routes = [
   {
-    component: Login1,
-    href: "/user/:id",
-    // redirectTo: "/login",
-    // onEnter: navigateTo => {
-    //   if (true) {
-    //     console.log("Inside onEnter()");
-    //     navigateTo("/login");
-    //   }
-    // }
+    href: "",
+    redirectTo: "/"
   },
   {
-    component: Login,
-    href: "/login"
-  }
+		href: "/",
+		component: App,
+		authorized: AUTH_SERVICE.isAuthorized
+	},
+  {
+    href: "/login",
+    component: Login
+  },
+  {
+		href: "/register",
+		component: Register,
+	},
+	{
+		href: "/user",
+		component: User,
+		authorized: AUTH_SERVICE.isAuthorized
+	},
+	{
+		href: "/logout",
+		onEnter: navigateTo => {
+      // console.log("Inside onEnter()");
+			AUTH_SERVICE.clearStorage();
+      navigateTo("/");
+    }
+	}
 ];
 
 export default routes;

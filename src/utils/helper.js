@@ -43,3 +43,10 @@ export const extractUrlParams = (template, url) => {
     return acc;
   }, params);
 };
+
+export const processResponse = res => {
+  if (res.ok) {
+    return res.json().then(answer => Promise.resolve({ answer, status: res.status }));
+    }
+  return res.json().then(answer => Promise.reject({ answer, status: res.status }));
+};
