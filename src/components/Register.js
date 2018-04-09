@@ -11,6 +11,7 @@ class Register extends Component {
 
 		this.host = document.createElement('div');
 		this.host.classList.add('register-container');
+		this.host.addEventListener("click", this.handleClick);
 		this.host.addEventListener("submit", this.handleSubmit);
 
 		AUTH_HTTP_SERVICE.getStores()
@@ -18,6 +19,12 @@ class Register extends Component {
 				const options = data.answer.map(store => `<option value="${store.id}">${store.name}</option>`).join("");
 				this.updateState({ options });
 			});
+	}
+
+	handleClick(ev) {
+		if (ev.target.id === "go-to-login-page-btn") {
+			window.location.hash = '/login';
+		}
 	}
 
 	handleSubmit(ev) {
@@ -49,23 +56,58 @@ class Register extends Component {
 		const { options } = this.state;
 
 		return `
-			<h2>Register form</h2>
 			<form class="register-form">
 				<label for="username">Username:</label>
-				<input type="text" name="username" id="username" required>
+				<input 
+					name="username" 
+					id="username" 
+					type="text" 
+					minlength="2" 
+					maxlength="24" 
+					placeholder="Enter new user name..." 
+					required
+					value="">
 				<label for="password">Password:</label>
-				<input type="password" name="password" id="password" required>
+				<input 
+					name="password" 
+					id="password" 
+					type="password" 
+					minlength="8"
+					placeholder="Enter password..."  
+					required
+					value="">
 				<label for="password_repeat">Confirm password:</label>
-				<input type="password" name="password_repeat" id="password_repeat" required>
+				<input 
+					name="password_repeat" 
+					id="password_repeat" 
+					type="password" 
+					minlength="8" 
+					placeholder="Repeat entering password..." 
+					required
+					value="">
 				<label for="email">Email:</label>
-				<input type="email" name="email" id="email" required>
+				<input 
+					name="email" 
+					id="email" 
+					type="email"
+					placeholder="Enter email address..." 
+					required
+					value="">
 				<label for="store_id">Choose your store:</label>
 				<select name="store_id" id="store_id" required>
 					${options}
 				</select>
 				<label for="store_password">Store password:</label>
-				<input type="password" name="store_password" id="store_password" required>
-				<button class="register-btn">Register</button>
+				<input 
+					name="store_password" 
+					id="store_password" 
+					type="password" 
+					minlength="8"
+					placeholder="Enter password for selected store..."  
+					required
+					value="">
+				<button id="register-btn" type="submit">Register</button>
+				<button id="go-to-login-page-btn" type="button">Go to login page</button>
 			</form>
     `;
 	}

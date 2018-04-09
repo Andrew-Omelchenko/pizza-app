@@ -8,10 +8,17 @@ class Login extends Component {
     this.host = document.createElement("div");
     this.host.classList.add("login-container");
 
+    this.host.addEventListener("click", this.handleClick);
     this.host.addEventListener("submit", this.handleSubmit);
 
     console.log(AUTH_SERVICE.isAuthorized());
   }
+
+  handleClick(ev) {
+		if (ev.target.id === "go-to-register-page-btn") {
+			window.location.hash = '/register';
+		}
+	}
 
   handleSubmit(ev) {
     ev.preventDefault();
@@ -39,13 +46,15 @@ class Login extends Component {
 
   render() {
     return `
-      <h2>Login form</h2>
-      <form class="login-form" id="login-form">
+      <form class="login-form">
         <label for="username">Username: </label>
         <input 
           name="username"
           class="username-fld" 
           id="username" 
+          type="text" 
+          minlength="2" 
+          maxlength="24" 
           placeholder="Enter your name..." 
           required 
           value="">
@@ -55,13 +64,13 @@ class Login extends Component {
           class="password-fld"
           id="password" 
           type="password" 
+          minlength="8" 
           placeholder="Enter your password..." 
           required 
           value="">
-        <p id="error-text"></p>
-        <button class="submit-btn">Submit</button>
+        <button id="login-btn" type="submit">Login</button>
+        <button id="go-to-register-page-btn" type="button">Go to register page</button>
       </form>
-      <a href="#/">Go to main</a>
     `;
   }
 }
