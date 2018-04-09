@@ -2,7 +2,7 @@ import { AUTH_SERVICE } from "./services/AuthService";
 import App from "./components/App";
 import Login from "./components/Login";
 import Register from "./components/Register";
-import User from "./components/User";
+import MyInfo from "./components/MyInfo";
 
 const routes = [
   {
@@ -23,8 +23,8 @@ const routes = [
 		component: Register,
 	},
 	{
-		href: "/user",
-		component: User,
+		href: "/my-info",
+		component: MyInfo,
 		authorized: AUTH_SERVICE.isAuthorized
 	},
 	{

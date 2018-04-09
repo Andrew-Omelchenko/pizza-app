@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 5);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -317,9 +317,59 @@ const STATUS_CODES = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_config__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_helper__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__AuthService__ = __webpack_require__(2);
+
+
+
+
+class AuthHttpService {
+  get(endpoint) {
+    const headers = new Headers({ "Content-Type": "application/json" });
+    
+    if (__WEBPACK_IMPORTED_MODULE_2__AuthService__["a" /* AUTH_SERVICE */].token) {
+      headers.append("Authorization", `Bearer ${__WEBPACK_IMPORTED_MODULE_2__AuthService__["a" /* AUTH_SERVICE */].token}`);
+    }
+
+    return fetch(`${__WEBPACK_IMPORTED_MODULE_0__utils_config__["a" /* API */].BASE_URL}${endpoint}`, { headers })
+      .then(__WEBPACK_IMPORTED_MODULE_1__utils_helper__["d" /* processResponse */]);
+  }
+
+  post(endpoint, payload) {
+		return fetch(`${__WEBPACK_IMPORTED_MODULE_0__utils_config__["a" /* API */].BASE_URL}${endpoint}`, {
+			method: 'POST',
+			body: JSON.stringify(payload),
+			headers: new Headers({ "content-type": "application/json" }),
+		})
+			.then(__WEBPACK_IMPORTED_MODULE_1__utils_helper__["d" /* processResponse */]);
+  }
+  
+  getStores() {
+		return this.get(__WEBPACK_IMPORTED_MODULE_0__utils_config__["a" /* API */].ENDPOINTS.STORE_LIST);
+  }
+  
+  createUser(userData) {
+		return this.post(__WEBPACK_IMPORTED_MODULE_0__utils_config__["a" /* API */].ENDPOINTS.CREATE_USER, userData);
+	}
+
+	getMyInfo() {
+		return this.get(__WEBPACK_IMPORTED_MODULE_0__utils_config__["a" /* API */].ENDPOINTS.MY_INFO);
+	}
+}
+
+const AUTH_HTTP_SERVICE = new AuthHttpService();
+/* harmony export (immutable) */ __webpack_exports__["a"] = AUTH_HTTP_SERVICE;
+
+
+/***/ }),
+/* 5 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__framework_Router__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__routes__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__framework_Router__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__routes__ = __webpack_require__(7);
 
 
 
@@ -327,7 +377,7 @@ const router = new __WEBPACK_IMPORTED_MODULE_0__framework_Router__["a" /* defaul
 
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -413,15 +463,15 @@ class Router extends __WEBPACK_IMPORTED_MODULE_0__Component__["a" /* default */]
 /* harmony default export */ __webpack_exports__["a"] = (Router);
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_AuthService__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_App__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Login__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_Register__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_User__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_App__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Login__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_Register__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_MyInfo__ = __webpack_require__(11);
 
 
 
@@ -447,8 +497,8 @@ const routes = [
 		component: __WEBPACK_IMPORTED_MODULE_3__components_Register__["a" /* default */],
 	},
 	{
-		href: "/user",
-		component: __WEBPACK_IMPORTED_MODULE_4__components_User__["a" /* default */],
+		href: "/my-info",
+		component: __WEBPACK_IMPORTED_MODULE_4__components_MyInfo__["a" /* default */],
 		authorized: __WEBPACK_IMPORTED_MODULE_0__services_AuthService__["a" /* AUTH_SERVICE */].isAuthorized
 	},
 	{
@@ -464,7 +514,7 @@ const routes = [
 /* harmony default export */ __webpack_exports__["a"] = (routes);
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -489,7 +539,7 @@ class App extends __WEBPACK_IMPORTED_MODULE_0__framework_Component__["a" /* defa
 /* harmony default export */ __webpack_exports__["a"] = (App);
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -533,7 +583,7 @@ class Login extends __WEBPACK_IMPORTED_MODULE_0__framework_Component__["a" /* de
           console.log(__WEBPACK_IMPORTED_MODULE_1__services_AuthService__["a" /* AUTH_SERVICE */].token);
           console.log(__WEBPACK_IMPORTED_MODULE_1__services_AuthService__["a" /* AUTH_SERVICE */].claims);
           console.log(__WEBPACK_IMPORTED_MODULE_1__services_AuthService__["a" /* AUTH_SERVICE */].isAuthorized());
-					window.location.hash = '/user';
+					window.location.hash = '/my-info';
 				}
       })
       .catch(err => {
@@ -575,12 +625,12 @@ class Login extends __WEBPACK_IMPORTED_MODULE_0__framework_Component__["a" /* de
 /* harmony default export */ __webpack_exports__["a"] = (Login);
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__framework_Component__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_AuthHttpService__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_AuthHttpService__ = __webpack_require__(4);
 
 
 
@@ -699,80 +749,63 @@ class Register extends __WEBPACK_IMPORTED_MODULE_0__framework_Component__["a" /*
 /* harmony default export */ __webpack_exports__["a"] = (Register);
 
 /***/ }),
-/* 10 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_config__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_helper__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__AuthService__ = __webpack_require__(2);
-
-
-
-
-class AuthHttpService {
-  get(endpoint, token) {
-    const headers = new Headers()
-      .append("accept", "application/json");
-    
-    if (token) {
-      headers.append("Authorization", `Bearer ${token}`);
-    }
-
-    return fetch(`${__WEBPACK_IMPORTED_MODULE_0__utils_config__["a" /* API */].BASE_URL}${endpoint}`, { headers })
-      .then(__WEBPACK_IMPORTED_MODULE_1__utils_helper__["d" /* processResponse */]);
-  }
-
-  post(endpoint, payload) {
-		return fetch(`${__WEBPACK_IMPORTED_MODULE_0__utils_config__["a" /* API */].BASE_URL}${endpoint}`, {
-			method: 'POST',
-			body: JSON.stringify(payload),
-			headers: new Headers({ "content-type": "application/json" }),
-		})
-			.then(__WEBPACK_IMPORTED_MODULE_1__utils_helper__["d" /* processResponse */]);
-  }
-  
-  getStores() {
-		return this.get(__WEBPACK_IMPORTED_MODULE_0__utils_config__["a" /* API */].ENDPOINTS.STORE_LIST, null);
-  }
-  
-  createUser(userData) {
-		return this.post(__WEBPACK_IMPORTED_MODULE_0__utils_config__["a" /* API */].ENDPOINTS.CREATE_USER, userData);
-	}
-
-	getMyInfo() {
-		return this.get(__WEBPACK_IMPORTED_MODULE_0__utils_config__["a" /* API */].ENDPOINTS.MY_INFO, __WEBPACK_IMPORTED_MODULE_2__AuthService__["a" /* AUTH_SERVICE */].token);
-	}
-}
-
-const AUTH_HTTP_SERVICE = new AuthHttpService();
-/* harmony export (immutable) */ __webpack_exports__["a"] = AUTH_HTTP_SERVICE;
-
-
-/***/ }),
 /* 11 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__framework_Component__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_AuthHttpService__ = __webpack_require__(4);
 
 
-class User extends __WEBPACK_IMPORTED_MODULE_0__framework_Component__["a" /* default */] {
+
+class MyInfo extends __WEBPACK_IMPORTED_MODULE_0__framework_Component__["a" /* default */] {
 	constructor(props) {
 		super(props);
 
+		this.state = {
+			myInfo: {
+				username: "",
+				uuid: "",
+				email: "",
+				created_at: "",
+				last_login: ""
+			}
+		};
+
 		this.host = document.createElement('div');
-		this.host.classList.add('user-container');
+		this.host.classList.add('my-info-container');
+		this.host.addEventListener("click", this.handleClick);
+
+		__WEBPACK_IMPORTED_MODULE_1__services_AuthHttpService__["a" /* AUTH_HTTP_SERVICE */].getMyInfo()
+			.then(data => this.updateState({ myInfo: data.answer }));
+	}
+
+	handleClick(ev) {
+		if (ev.target.id === "go-to-app-btn") {
+			window.location.hash = '/';
+		}
+		if (ev.target.id === "logout-btn") {
+			window.location.hash = '/logout';
+		}
 	}
 
 	render() {
+		const { myInfo } = this.state;
+
     return `
-      <h2>User form</h2>
+			<h2>My Info</h2>
+			<p>Username: ${myInfo.username}</p>
+			<p>UUID: ${myInfo.uuid}</p>
+			<p>Email: ${myInfo.email}</p>
+			<p>Created at: ${myInfo.created_at}</p>
+			<p>Last login: ${myInfo.last_login}</p>
+			<button id="go-to-app-btn" type="button">Go to Application</button>
+			<button id="logout-btn" type="button">Logout</button>
     `;
   }
 }
 
-/* harmony default export */ __webpack_exports__["a"] = (User);
+/* harmony default export */ __webpack_exports__["a"] = (MyInfo);
 
 /***/ })
 /******/ ]);

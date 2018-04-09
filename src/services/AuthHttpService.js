@@ -3,12 +3,11 @@ import { processResponse } from "../utils/helper";
 import { AUTH_SERVICE } from "./AuthService";
 
 class AuthHttpService {
-  get(endpoint, token) {
-    const headers = new Headers()
-      .append("accept", "application/json");
+  get(endpoint) {
+    const headers = new Headers({ "Content-Type": "application/json" });
     
-    if (token) {
-      headers.append("Authorization", `Bearer ${token}`);
+    if (AUTH_SERVICE.token) {
+      headers.append("Authorization", `Bearer ${AUTH_SERVICE.token}`);
     }
 
     return fetch(`${API.BASE_URL}${endpoint}`, { headers })
@@ -25,7 +24,7 @@ class AuthHttpService {
   }
   
   getStores() {
-		return this.get(API.ENDPOINTS.STORE_LIST, null);
+		return this.get(API.ENDPOINTS.STORE_LIST);
   }
   
   createUser(userData) {
@@ -33,7 +32,7 @@ class AuthHttpService {
 	}
 
 	getMyInfo() {
-		return this.get(API.ENDPOINTS.MY_INFO, AUTH_SERVICE.token);
+		return this.get(API.ENDPOINTS.MY_INFO);
 	}
 }
 

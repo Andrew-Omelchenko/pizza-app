@@ -36,7 +36,7 @@ class Login extends Component {
           console.log(AUTH_SERVICE.token);
           console.log(AUTH_SERVICE.claims);
           console.log(AUTH_SERVICE.isAuthorized());
-					window.location.hash = '/user';
+					window.location.hash = '/my-info';
 				}
       })
       .catch(err => {
