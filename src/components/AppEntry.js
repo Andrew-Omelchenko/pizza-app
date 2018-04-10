@@ -1,14 +1,14 @@
 import Component from "../framework/Component";
 import HeaderComponent from "./HeaderComponent";
-import MyInfoComponent from "./MyInfoComponent";
+import AppEntryComponent from "./AppEntryComponent";
 import FooterComponent from "./FooterComponent";
 
-class MyInfo extends Component {
+class AppEntry extends Component {
   constructor(props) {
     super(props);
 
     this.headerComponent = new HeaderComponent();
-		this.myInfoComponent = new MyInfoComponent();
+		this.appEntryComponent = new AppEntryComponent();
 		this.footerComponent = new FooterComponent();
 
     this.host = document.createElement("div");
@@ -18,10 +18,10 @@ class MyInfo extends Component {
   render() {
     return [
       this.headerComponent.update({}),
-      this.myInfoComponent.update({}),
+      this.appEntryComponent.update({}),
       this.footerComponent.update({})
     ];
   }
 }
 
-export default MyInfo;
+export default AppEntry;

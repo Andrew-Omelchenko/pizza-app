@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 7);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -144,7 +144,7 @@ const toHtml = string => {
 
   return template.content;
 };
-/* unused harmony export toHtml */
+/* harmony export (immutable) */ __webpack_exports__["e"] = toHtml;
 
 
 const URL_PARAM_REGEXP = /:\w+/g;
@@ -193,7 +193,7 @@ const processResponse = res => {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_config__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_config__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_helper__ = __webpack_require__(1);
 
 
@@ -286,6 +286,86 @@ const AUTH_SERVICE = new AuthService();
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_helper__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__framework_Component__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Clock__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Options__ = __webpack_require__(12);
+
+
+
+
+
+class HeaderComponent extends __WEBPACK_IMPORTED_MODULE_1__framework_Component__["a" /* default */] {
+	constructor(props) {
+		super(props);
+
+		this.host = document.createElement("div");
+		this.host.classList.add("header-container");
+
+		this.clock = new __WEBPACK_IMPORTED_MODULE_2__Clock__["a" /* default */]();
+		this.options = new __WEBPACK_IMPORTED_MODULE_3__Options__["a" /* default */]();
+	}
+
+	render() {
+
+    const htmlString = `
+			<div class="flex-container header">
+				<div class="lbl" id="clock-placeholder"></div>
+				<div class="flex-container center">
+					<img class="logo" src="../img/pizza-cat.png" alt="logo">
+				</div>
+				<div class="lbl" id="options-placeholder"></div>
+			</div>
+		`;
+
+		const node = Object(__WEBPACK_IMPORTED_MODULE_0__utils_helper__["e" /* toHtml */])(htmlString);
+		node.getElementById("clock-placeholder").append(this.clock.update());
+		node.getElementById("options-placeholder").append(this.options.update());
+
+		return node;
+	}
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (HeaderComponent);
+
+/***/ }),
+/* 4 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__framework_Component__ = __webpack_require__(0);
+
+
+class FooterComponent extends __WEBPACK_IMPORTED_MODULE_0__framework_Component__["a" /* default */] {
+	constructor(props) {
+		super(props);
+
+		this.host = document.createElement("div");
+		this.host.classList.add("footer-container");
+	}
+
+	render() {
+
+    return `
+			<div class="flex-container footer">
+				<span>
+					Kottans, Kottans str., 1. <a href="Tel: 577-788-87">Tel.: 577-788-87</a> 
+				</span>
+				<span>
+					Pizza Manager&copy;, 2018
+				</span>
+			</div>
+    `;
+  }
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (FooterComponent);
+
+/***/ }),
+/* 5 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 const API = {
   BASE_URL: "https://pizza-tele.ga/api/v1/",
   ENDPOINTS: {
@@ -313,11 +393,11 @@ const STATUS_CODES = {
 
 
 /***/ }),
-/* 4 */
+/* 6 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_config__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_config__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_helper__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__AuthService__ = __webpack_require__(2);
 
@@ -328,7 +408,7 @@ class AuthHttpService {
   get(endpoint) {
     const headers = new Headers({ "Content-Type": "application/json" });
     
-    if (__WEBPACK_IMPORTED_MODULE_2__AuthService__["a" /* AUTH_SERVICE */].token) {
+    if (__WEBPACK_IMPORTED_MODULE_2__AuthService__["a" /* AUTH_SERVICE */].isAuthorized()) {
       headers.append("Authorization", `Bearer ${__WEBPACK_IMPORTED_MODULE_2__AuthService__["a" /* AUTH_SERVICE */].token}`);
     }
 
@@ -363,13 +443,13 @@ const AUTH_HTTP_SERVICE = new AuthHttpService();
 
 
 /***/ }),
-/* 5 */
+/* 7 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__framework_Router__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__routes__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__framework_Router__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__routes__ = __webpack_require__(9);
 
 
 
@@ -377,7 +457,7 @@ const router = new __WEBPACK_IMPORTED_MODULE_0__framework_Router__["a" /* defaul
 
 
 /***/ }),
-/* 6 */
+/* 8 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -463,15 +543,15 @@ class Router extends __WEBPACK_IMPORTED_MODULE_0__Component__["a" /* default */]
 /* harmony default export */ __webpack_exports__["a"] = (Router);
 
 /***/ }),
-/* 7 */
+/* 9 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_AuthService__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_App__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Login__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_Register__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_MyInfo__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_AppEntry__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Login__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_Register__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_MyInfo__ = __webpack_require__(18);
 
 
 
@@ -485,7 +565,7 @@ const routes = [
   },
   {
 		href: "/",
-		component: __WEBPACK_IMPORTED_MODULE_1__components_App__["a" /* default */],
+		component: __WEBPACK_IMPORTED_MODULE_1__components_AppEntry__["a" /* default */],
 		authorized: __WEBPACK_IMPORTED_MODULE_0__services_AuthService__["a" /* AUTH_SERVICE */].isAuthorized
 	},
   {
@@ -514,19 +594,150 @@ const routes = [
 /* harmony default export */ __webpack_exports__["a"] = (routes);
 
 /***/ }),
-/* 8 */
+/* 10 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__framework_Component__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__HeaderComponent__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__AppEntryComponent__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__FooterComponent__ = __webpack_require__(4);
+
+
+
+
+
+class AppEntry extends __WEBPACK_IMPORTED_MODULE_0__framework_Component__["a" /* default */] {
+  constructor(props) {
+    super(props);
+
+    this.headerComponent = new __WEBPACK_IMPORTED_MODULE_1__HeaderComponent__["a" /* default */]();
+		this.appEntryComponent = new __WEBPACK_IMPORTED_MODULE_2__AppEntryComponent__["a" /* default */]();
+		this.footerComponent = new __WEBPACK_IMPORTED_MODULE_3__FooterComponent__["a" /* default */]();
+
+    this.host = document.createElement("div");
+    this.host.classList.add("container");
+  }
+
+  render() {
+    return [
+      this.headerComponent.update({}),
+      this.appEntryComponent.update({}),
+      this.footerComponent.update({})
+    ];
+  }
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (AppEntry);
+
+/***/ }),
+/* 11 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__framework_Component__ = __webpack_require__(0);
 
 
-class App extends __WEBPACK_IMPORTED_MODULE_0__framework_Component__["a" /* default */] {
+class Clock extends __WEBPACK_IMPORTED_MODULE_0__framework_Component__["a" /* default */] {
+	constructor(props) {
+    super(props);
+
+    this.state = {
+			time: "00:00:00"
+		};
+    
+    function align(smth) {
+      if ( smth < 10) {
+          return `0${smth.toString()}`;
+      }
+      return smth.toString();
+    }
+    
+    function getCurrentTime() {
+      const current = new Date();
+      return `
+          ${align(current.getHours())}:${align(current.getMinutes())}:${align(current.getSeconds())}
+          `;
+    }
+
+		this.host = document.createElement("div");
+    this.host.classList.add("clock");
+
+    setInterval(() => {
+			const time = getCurrentTime();
+			this.updateState({ time });
+		}, 1000);
+	}
+
+	render() {
+		const { time } = this.state;
+
+    return `
+      <i class="fa fa-clock-o fa-fw label" aria-hidden="true"></i>
+      <time datetime="00:00:00" id="clock">${time}</time>
+		`;
+	}
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (Clock);
+
+/***/ }),
+/* 12 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__framework_Component__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_AuthService__ = __webpack_require__(2);
+
+
+
+class Options extends __WEBPACK_IMPORTED_MODULE_0__framework_Component__["a" /* default */] {
+	constructor(props) {
+    super(props);
+
+    let uname = "";
+
+    if (__WEBPACK_IMPORTED_MODULE_1__services_AuthService__["a" /* AUTH_SERVICE */].claims) {
+      const { username } = __WEBPACK_IMPORTED_MODULE_1__services_AuthService__["a" /* AUTH_SERVICE */].claims;
+      uname = username;
+    }
+
+    this.state = {
+      user: uname
+    };
+
+		this.host = document.createElement("div");
+    this.host.classList.add("options");
+
+	}
+
+	render() {
+		const { user } = this.state;
+
+    return `
+      <i class="fa fa-user fa-fw label" aria-hidden="true"></i>
+      <span>${user}</span>
+      <a href=${user ? "#/logout" : "#/login"}>${user ? "Logout" : "Login Page"}</a>
+		`;
+	}
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (Options);
+
+/***/ }),
+/* 13 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__framework_Component__ = __webpack_require__(0);
+
+
+class AppEntryComponent extends __WEBPACK_IMPORTED_MODULE_0__framework_Component__["a" /* default */] {
 	constructor(props) {
 		super(props);
 
-		this.host = document.createElement('div');
-		this.host.classList.add('app-container');
+		this.host = document.createElement("div");
+		this.host.classList.add("app-container");
 	}
 
 	render() {
@@ -536,10 +747,47 @@ class App extends __WEBPACK_IMPORTED_MODULE_0__framework_Component__["a" /* defa
 	}
 }
 
-/* harmony default export */ __webpack_exports__["a"] = (App);
+/* harmony default export */ __webpack_exports__["a"] = (AppEntryComponent);
 
 /***/ }),
-/* 9 */
+/* 14 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__framework_Component__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__HeaderComponent__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__LoginComponent__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__FooterComponent__ = __webpack_require__(4);
+
+
+
+
+
+class Login extends __WEBPACK_IMPORTED_MODULE_0__framework_Component__["a" /* default */] {
+  constructor(props) {
+    super(props);
+
+    this.headerComponent = new __WEBPACK_IMPORTED_MODULE_1__HeaderComponent__["a" /* default */]();
+		this.loginComponent = new __WEBPACK_IMPORTED_MODULE_2__LoginComponent__["a" /* default */]();
+		this.footerComponent = new __WEBPACK_IMPORTED_MODULE_3__FooterComponent__["a" /* default */]();
+
+    this.host = document.createElement("div");
+    this.host.classList.add("container");
+  }
+
+  render() {
+    return [
+      this.headerComponent.update({}),
+      this.loginComponent.update({}),
+      this.footerComponent.update({})
+    ];
+  }
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (Login);
+
+/***/ }),
+/* 15 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -548,7 +796,7 @@ class App extends __WEBPACK_IMPORTED_MODULE_0__framework_Component__["a" /* defa
 
 
 
-class Login extends __WEBPACK_IMPORTED_MODULE_0__framework_Component__["a" /* default */] {
+class LoginComponent extends __WEBPACK_IMPORTED_MODULE_0__framework_Component__["a" /* default */] {
   constructor(props) {
     super(props);
 
@@ -563,7 +811,7 @@ class Login extends __WEBPACK_IMPORTED_MODULE_0__framework_Component__["a" /* de
 
   handleClick(ev) {
 		if (ev.target.id === "go-to-register-page-btn") {
-			window.location.hash = '/register';
+			window.location.hash = "/register";
 		}
 	}
 
@@ -583,7 +831,7 @@ class Login extends __WEBPACK_IMPORTED_MODULE_0__framework_Component__["a" /* de
           console.log(__WEBPACK_IMPORTED_MODULE_1__services_AuthService__["a" /* AUTH_SERVICE */].token);
           console.log(__WEBPACK_IMPORTED_MODULE_1__services_AuthService__["a" /* AUTH_SERVICE */].claims);
           console.log(__WEBPACK_IMPORTED_MODULE_1__services_AuthService__["a" /* AUTH_SERVICE */].isAuthorized());
-					window.location.hash = '/my-info';
+					window.location.hash = "/my-info";
 				}
       })
       .catch(err => {
@@ -622,19 +870,56 @@ class Login extends __WEBPACK_IMPORTED_MODULE_0__framework_Component__["a" /* de
   }
 }
 
-/* harmony default export */ __webpack_exports__["a"] = (Login);
+/* harmony default export */ __webpack_exports__["a"] = (LoginComponent);
 
 /***/ }),
-/* 10 */
+/* 16 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__framework_Component__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_AuthHttpService__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__HeaderComponent__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__RegisterComponent__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__FooterComponent__ = __webpack_require__(4);
+
+
 
 
 
 class Register extends __WEBPACK_IMPORTED_MODULE_0__framework_Component__["a" /* default */] {
+  constructor(props) {
+    super(props);
+
+    this.headerComponent = new __WEBPACK_IMPORTED_MODULE_1__HeaderComponent__["a" /* default */]();
+		this.registerComponent = new __WEBPACK_IMPORTED_MODULE_2__RegisterComponent__["a" /* default */]();
+		this.footerComponent = new __WEBPACK_IMPORTED_MODULE_3__FooterComponent__["a" /* default */]();
+
+    this.host = document.createElement("div");
+    this.host.classList.add("container");
+  }
+
+  render() {
+    return [
+      this.headerComponent.update({}),
+      this.registerComponent.update({}),
+      this.footerComponent.update({})
+    ];
+  }
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (Register);
+
+/***/ }),
+/* 17 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__framework_Component__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_AuthHttpService__ = __webpack_require__(6);
+
+
+
+class RegisterComponent extends __WEBPACK_IMPORTED_MODULE_0__framework_Component__["a" /* default */] {
 	constructor(props) {
 		super(props);
 
@@ -642,8 +927,8 @@ class Register extends __WEBPACK_IMPORTED_MODULE_0__framework_Component__["a" /*
 			options: ""
 		};
 
-		this.host = document.createElement('div');
-		this.host.classList.add('register-container');
+		this.host = document.createElement("div");
+		this.host.classList.add("register-container");
 		this.host.addEventListener("click", this.handleClick);
 		this.host.addEventListener("submit", this.handleSubmit);
 
@@ -656,7 +941,7 @@ class Register extends __WEBPACK_IMPORTED_MODULE_0__framework_Component__["a" /*
 
 	handleClick(ev) {
 		if (ev.target.id === "go-to-login-page-btn") {
-			window.location.hash = '/login';
+			window.location.hash = "/login";
 		}
 	}
 
@@ -677,7 +962,7 @@ class Register extends __WEBPACK_IMPORTED_MODULE_0__framework_Component__["a" /*
 		__WEBPACK_IMPORTED_MODULE_1__services_AuthHttpService__["a" /* AUTH_HTTP_SERVICE */].createUser(userData)
 			.then(res => {
 				if (res.answer.success) {
-					window.location.hash = '/login';
+					window.location.hash = "/login";
 				}
 			})
 			.catch(err => {
@@ -746,19 +1031,56 @@ class Register extends __WEBPACK_IMPORTED_MODULE_0__framework_Component__["a" /*
 	}
 }
 
-/* harmony default export */ __webpack_exports__["a"] = (Register);
+/* harmony default export */ __webpack_exports__["a"] = (RegisterComponent);
 
 /***/ }),
-/* 11 */
+/* 18 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__framework_Component__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_AuthHttpService__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__HeaderComponent__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__MyInfoComponent__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__FooterComponent__ = __webpack_require__(4);
+
+
 
 
 
 class MyInfo extends __WEBPACK_IMPORTED_MODULE_0__framework_Component__["a" /* default */] {
+  constructor(props) {
+    super(props);
+
+    this.headerComponent = new __WEBPACK_IMPORTED_MODULE_1__HeaderComponent__["a" /* default */]();
+		this.myInfoComponent = new __WEBPACK_IMPORTED_MODULE_2__MyInfoComponent__["a" /* default */]();
+		this.footerComponent = new __WEBPACK_IMPORTED_MODULE_3__FooterComponent__["a" /* default */]();
+
+    this.host = document.createElement("div");
+    this.host.classList.add("container");
+  }
+
+  render() {
+    return [
+      this.headerComponent.update({}),
+      this.myInfoComponent.update({}),
+      this.footerComponent.update({})
+    ];
+  }
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (MyInfo);
+
+/***/ }),
+/* 19 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__framework_Component__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_AuthHttpService__ = __webpack_require__(6);
+
+
+
+class MyInfoComponent extends __WEBPACK_IMPORTED_MODULE_0__framework_Component__["a" /* default */] {
 	constructor(props) {
 		super(props);
 
@@ -772,8 +1094,8 @@ class MyInfo extends __WEBPACK_IMPORTED_MODULE_0__framework_Component__["a" /* d
 			}
 		};
 
-		this.host = document.createElement('div');
-		this.host.classList.add('my-info-container');
+		this.host = document.createElement("div");
+		this.host.classList.add("my-info-container");
 		this.host.addEventListener("click", this.handleClick);
 
 		__WEBPACK_IMPORTED_MODULE_1__services_AuthHttpService__["a" /* AUTH_HTTP_SERVICE */].getMyInfo()
@@ -782,10 +1104,10 @@ class MyInfo extends __WEBPACK_IMPORTED_MODULE_0__framework_Component__["a" /* d
 
 	handleClick(ev) {
 		if (ev.target.id === "go-to-app-btn") {
-			window.location.hash = '/';
+			window.location.hash = "/";
 		}
 		if (ev.target.id === "logout-btn") {
-			window.location.hash = '/logout';
+			window.location.hash = "/logout";
 		}
 	}
 
@@ -805,7 +1127,7 @@ class MyInfo extends __WEBPACK_IMPORTED_MODULE_0__framework_Component__["a" /* d
   }
 }
 
-/* harmony default export */ __webpack_exports__["a"] = (MyInfo);
+/* harmony default export */ __webpack_exports__["a"] = (MyInfoComponent);
 
 /***/ })
 /******/ ]);

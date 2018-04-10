@@ -18,3 +18,160 @@ body {
   font-weight: 400;
   box-sizing: border-box;
 }
+
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+
+  &.center {
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  @include flex-settings;
+
+  .logo {
+    display: none;
+  }
+
+  .lbl {
+    text-align: center;
+  }
+}
+
+@media screen and (min-width: 481px) and (max-width: 960px) {
+  header, main, footer {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  @include grid-settings-2-column;
+}
+
+@media screen and (min-width: 961px) and (max-width: 1440px) {
+  header, main, footer {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  @include grid-settings-3-column;
+}
+
+@media screen and (min-width: 1441px) {
+  header, main, footer {
+    width: 1440px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @include grid-settings-3-column; 
+}
+
+strong {
+  font-size: 16pt;
+  font-weight: bold;
+}
+
+.header, .footer {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.header {
+  background: $bg-color-header;
+}
+
+.footer {
+  font-family: "Lato", sans-serif;
+  color: $fg-color-footer;
+  background: $bg-color-footer;
+  position: absolute;
+	width: 100%;
+	bottom: 0;
+  padding: 20px 10px 20px 10px;
+
+  span {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  a {
+    color: $fg-color-footer;
+  }
+
+  a:hover {
+    opacity: 0.7;
+  }
+}
+
+.logo {
+  width: 30%;
+}
+
+.lbl {
+  font-family: "Lato", sans-serif;
+  font-size: 16pt;
+  font-weight: bold;
+  text-align: center;
+  color: $fg-color-header;
+  width: 210px;
+  margin: 10px;
+
+  a {
+    color: $fg-color-header;
+    text-decoration: none;
+  }
+
+  a:hover {
+    opacity: 0.5;
+  }
+}
+
+.btn {
+  font-family: "Roboto", sans-serif;
+  font-size: 12pt;
+  font-weight: bold;
+  height: 42px;
+  width: 210px;
+  border: 1px solid gray;
+  border-radius: 5px;
+  margin: 10px;
+  color: $fg-color-btn;
+  background: $bg-color-btn;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+.tile {
+  width: 100%;
+}
+
+.img-container {
+  border-radius: 50%;
+  border: 3px solid transparent;
+  background: url("../img/wood.png");
+  margin-top: 10px;
+}
+
+.details {
+  background: $bg-color-details;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+.img-container, .details {
+  width: 100%;
+  padding: 10px;
+}
+
+.padded {
+  padding: 10px;
+}
