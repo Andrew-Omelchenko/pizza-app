@@ -22,12 +22,28 @@ class Options extends Component {
 	}
 
 	render() {
-		const { user } = this.state;
+    const { user } = this.state;
+    
+    let login = false;
+    if (this.props) {
+      const { isLogin } = this.props;
+      login = isLogin;
+    }
+
+    const href = () => {
+      if (!user) {
+        if (login) {
+          return "register";
+        }
+        return "login";
+      }
+      return "logout";
+    };
 
     return `
       <i class="fa fa-user fa-fw label" aria-hidden="true"></i>
       <a href="#/my-info">${user}</a>
-      <a href=${user ? "#/logout" : "#/login"}>${user ? "Logout" : "Login"}</a>
+      <a href="#/${href()}">${href().toUpperCase()}</a>
 		`;
 	}
 }

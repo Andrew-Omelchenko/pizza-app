@@ -17,7 +17,7 @@ class Login extends Component {
 
   render() {
     return [
-      this.headerComponent.update({}),
+      this.headerComponent.update({ isLogin: true }),
       this.loginComponent.update({}),
       this.footerComponent.update({})
     ];

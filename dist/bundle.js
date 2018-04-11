@@ -303,10 +303,15 @@ class HeaderComponent extends __WEBPACK_IMPORTED_MODULE_1__framework_Component__
 		this.host.classList.add("header-container");
 
 		this.clock = new __WEBPACK_IMPORTED_MODULE_2__Clock__["a" /* default */]();
-		this.options = new __WEBPACK_IMPORTED_MODULE_3__Options__["a" /* default */]();
+		this.options = new __WEBPACK_IMPORTED_MODULE_3__Options__["a" /* default */](props);
 	}
 
 	render() {
+		let login = false;
+    if (this.props) {
+      const { isLogin } = this.props;
+      login = isLogin;
+    }
 
     const htmlString = `
 			<div class="flex-container header">
@@ -320,7 +325,7 @@ class HeaderComponent extends __WEBPACK_IMPORTED_MODULE_1__framework_Component__
 
 		const node = Object(__WEBPACK_IMPORTED_MODULE_0__utils_helper__["e" /* toHtml */])(htmlString);
 		node.getElementById("clock-placeholder").append(this.clock.update());
-		node.getElementById("options-placeholder").append(this.options.update());
+		node.getElementById("options-placeholder").append(this.options.update({ isLogin: login}));
 
 		return node;
 	}
@@ -712,12 +717,28 @@ class Options extends __WEBPACK_IMPORTED_MODULE_0__framework_Component__["a" /* 
 	}
 
 	render() {
-		const { user } = this.state;
+    const { user } = this.state;
+    
+    let login = false;
+    if (this.props) {
+      const { isLogin } = this.props;
+      login = isLogin;
+    }
+
+    const href = () => {
+      if (!user) {
+        if (login) {
+          return "register";
+        }
+        return "login";
+      }
+      return "logout";
+    };
 
     return `
       <i class="fa fa-user fa-fw label" aria-hidden="true"></i>
       <a href="#/my-info">${user}</a>
-      <a href=${user ? "#/logout" : "#/login"}>${user ? "Logout" : "Login"}</a>
+      <a href="#/${href()}">${href().toUpperCase()}</a>
 		`;
 	}
 }
@@ -808,7 +829,7 @@ class Login extends __WEBPACK_IMPORTED_MODULE_0__framework_Component__["a" /* de
 
   render() {
     return [
-      this.headerComponent.update({}),
+      this.headerComponent.update({ isLogin: true }),
       this.loginComponent.update({}),
       this.footerComponent.update({})
     ];
@@ -834,17 +855,8 @@ class LoginComponent extends __WEBPACK_IMPORTED_MODULE_0__framework_Component__[
     this.host = document.createElement("div");
     this.host.classList.add("login-container");
 
-    this.host.addEventListener("click", this.handleClick);
     this.host.addEventListener("submit", this.handleSubmit);
-
-    console.log(__WEBPACK_IMPORTED_MODULE_1__services_AuthService__["a" /* AUTH_SERVICE */].isAuthorized());
   }
-
-  handleClick(ev) {
-		if (ev.target.id === "register-btn") {
-			window.location.hash = "/register";
-		}
-	}
 
   handleSubmit(ev) {
     ev.preventDefault();
@@ -853,8 +865,6 @@ class LoginComponent extends __WEBPACK_IMPORTED_MODULE_0__framework_Component__[
       username: ev.target.username.value,
 			password: ev.target.password.value
     };
-    
-    console.log(userData);
 
     __WEBPACK_IMPORTED_MODULE_1__services_AuthService__["a" /* AUTH_SERVICE */].login(userData)
       .then(res => {
@@ -895,7 +905,6 @@ class LoginComponent extends __WEBPACK_IMPORTED_MODULE_0__framework_Component__[
           required 
           value="">
         <button class="btn btn-wide" id="submit-btn" type="submit">Submit</button>
-        <button class="btn btn-wide" id="register-btn" type="button">Register</button>
       </form>
     `;
   }

@@ -8,17 +8,8 @@ class LoginComponent extends Component {
     this.host = document.createElement("div");
     this.host.classList.add("login-container");
 
-    this.host.addEventListener("click", this.handleClick);
     this.host.addEventListener("submit", this.handleSubmit);
-
-    console.log(AUTH_SERVICE.isAuthorized());
   }
-
-  handleClick(ev) {
-		if (ev.target.id === "register-btn") {
-			window.location.hash = "/register";
-		}
-	}
 
   handleSubmit(ev) {
     ev.preventDefault();
@@ -27,8 +18,6 @@ class LoginComponent extends Component {
       username: ev.target.username.value,
 			password: ev.target.password.value
     };
-    
-    console.log(userData);
 
     AUTH_SERVICE.login(userData)
       .then(res => {
@@ -69,7 +58,6 @@ class LoginComponent extends Component {
           required 
           value="">
         <button class="btn btn-wide" id="submit-btn" type="submit">Submit</button>
-        <button class="btn btn-wide" id="register-btn" type="button">Register</button>
       </form>
     `;
   }
