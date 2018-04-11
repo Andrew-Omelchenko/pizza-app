@@ -68,8 +68,8 @@ class LoginComponent extends Component {
           placeholder="Enter your password..." 
           required 
           value="">
-        <button id="submit-btn" type="submit">Submit</button>
-        <button id="register-btn" type="button">Register</button>
+        <button class="btn btn-wide" id="submit-btn" type="submit">Submit</button>
+        <button class="btn btn-wide" id="register-btn" type="button">Register</button>
       </form>
     `;
   }

@@ -53,6 +53,7 @@ class RegisterComponent extends Component {
 				<label for="username">Username:</label>
 				<input 
 					name="username" 
+					class="username-fld" 
 					id="username" 
 					type="text" 
 					minlength="2" 
@@ -63,6 +64,7 @@ class RegisterComponent extends Component {
 				<label for="password">Password:</label>
 				<input 
 					name="password" 
+					class="password-fld" 
 					id="password" 
 					type="password" 
 					minlength="8"
@@ -72,6 +74,7 @@ class RegisterComponent extends Component {
 				<label for="password_repeat">Confirm password:</label>
 				<input 
 					name="password_repeat" 
+					class="password-repeat-fld" 
 					id="password_repeat" 
 					type="password" 
 					minlength="8" 
@@ -81,25 +84,27 @@ class RegisterComponent extends Component {
 				<label for="email">Email:</label>
 				<input 
 					name="email" 
+					class="email-fld" 
 					id="email" 
 					type="email"
 					placeholder="Enter email address..." 
 					required
 					value="">
 				<label for="store_id">Choose your store:</label>
-				<select name="store_id" id="store_id" required>
+				<select name="store_id" class="store-id-fld" id="store_id" required>
 					${options}
 				</select>
 				<label for="store_password">Store password:</label>
 				<input 
 					name="store_password" 
+					class="store-password-fld"
 					id="store_password" 
 					type="password" 
 					minlength="8"
 					placeholder="Enter password for selected store..."  
 					required
 					value="">
-				<button id="register-btn" type="submit">Submit</button>
+				<button class="btn btn-wide" id="register-btn" type="submit">Submit</button>
 			</form>
     `;
 	}

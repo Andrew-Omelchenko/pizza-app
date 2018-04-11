@@ -741,8 +741,39 @@ class DashboardComponent extends __WEBPACK_IMPORTED_MODULE_0__framework_Componen
 	}
 
 	render() {
+
+		let ordersString = "";
+
+		for (let i = 1; i < 10; i++) {
+			ordersString += `
+				<div class="flex-container center padded position-${i}">
+          <div class="img-container">
+            <img class="tile" src="img/${i}.png" alt="image">
+          </div>
+          <div class="details">
+            <div class="flex-container">
+              <time datetime="00:00:00">XX:XX:XX</time>
+              <span>#1</span>
+            </div> 
+            <div class="flex-container">
+              <strong>ETA: 1min</strong>
+              <strong><money>$32.00</money></strong>
+            </div>      
+          </div>
+        </div>
+			`;
+		}
+
 		return `
-      <h2>App form</h2>
+      <div class="flex-container center">
+        <button class="btn btn-ordinary" type="button">
+          <i class="fa fa-plus fa-fw label" aria-hidden="true"></i>
+          ADD NEW PIZZA
+        </button>
+      </div>
+			<div class="wrapper">
+				${ordersString}
+			</div>
     `;
 	}
 }
@@ -863,8 +894,8 @@ class LoginComponent extends __WEBPACK_IMPORTED_MODULE_0__framework_Component__[
           placeholder="Enter your password..." 
           required 
           value="">
-        <button id="submit-btn" type="submit">Submit</button>
-        <button id="register-btn" type="button">Register</button>
+        <button class="btn btn-wide" id="submit-btn" type="submit">Submit</button>
+        <button class="btn btn-wide" id="register-btn" type="button">Register</button>
       </form>
     `;
   }
@@ -971,6 +1002,7 @@ class RegisterComponent extends __WEBPACK_IMPORTED_MODULE_0__framework_Component
 				<label for="username">Username:</label>
 				<input 
 					name="username" 
+					class="username-fld" 
 					id="username" 
 					type="text" 
 					minlength="2" 
@@ -981,6 +1013,7 @@ class RegisterComponent extends __WEBPACK_IMPORTED_MODULE_0__framework_Component
 				<label for="password">Password:</label>
 				<input 
 					name="password" 
+					class="password-fld" 
 					id="password" 
 					type="password" 
 					minlength="8"
@@ -990,6 +1023,7 @@ class RegisterComponent extends __WEBPACK_IMPORTED_MODULE_0__framework_Component
 				<label for="password_repeat">Confirm password:</label>
 				<input 
 					name="password_repeat" 
+					class="password-repeat-fld" 
 					id="password_repeat" 
 					type="password" 
 					minlength="8" 
@@ -999,25 +1033,27 @@ class RegisterComponent extends __WEBPACK_IMPORTED_MODULE_0__framework_Component
 				<label for="email">Email:</label>
 				<input 
 					name="email" 
+					class="email-fld" 
 					id="email" 
 					type="email"
 					placeholder="Enter email address..." 
 					required
 					value="">
 				<label for="store_id">Choose your store:</label>
-				<select name="store_id" id="store_id" required>
+				<select name="store_id" class="store-id-fld" id="store_id" required>
 					${options}
 				</select>
 				<label for="store_password">Store password:</label>
 				<input 
 					name="store_password" 
+					class="store-password-fld"
 					id="store_password" 
 					type="password" 
 					minlength="8"
 					placeholder="Enter password for selected store..."  
 					required
 					value="">
-				<button id="register-btn" type="submit">Submit</button>
+				<button class="btn btn-wide" id="register-btn" type="submit">Submit</button>
 			</form>
     `;
 	}
