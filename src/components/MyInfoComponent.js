@@ -33,13 +33,12 @@ class MyInfoComponent extends Component {
 		const { myInfo } = this.state;
 
     return `
-			<h2>My Info</h2>
-			<p>Username: ${myInfo.username}</p>
+			<h2>Username: ${myInfo.username}</h2>
 			<p>UUID: ${myInfo.uuid}</p>
 			<p>Email: ${myInfo.email}</p>
 			<p>Created at: ${myInfo.created_at}</p>
 			<p>Last login: ${myInfo.last_login}</p>
-			<button id="dashboard-btn" type="button">Dashboard</button>
+			<button class="btn btn-wide" id="dashboard-btn" type="button">Dashboard</button>
     `;
   }
 }

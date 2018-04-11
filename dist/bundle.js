@@ -311,7 +311,7 @@ class HeaderComponent extends __WEBPACK_IMPORTED_MODULE_1__framework_Component__
     const htmlString = `
 			<div class="flex-container header">
 				<div class="lbl" id="clock-placeholder"></div>
-				<div class="flex-container center">
+				<div class="flex-container center logo-wrapper">
 					<img class="logo" src="./img/pizza-cat.png" alt="logo">
 				</div>
 				<div class="lbl" id="options-placeholder"></div>
@@ -716,7 +716,7 @@ class Options extends __WEBPACK_IMPORTED_MODULE_0__framework_Component__["a" /* 
 
     return `
       <i class="fa fa-user fa-fw label" aria-hidden="true"></i>
-      <span>${user}</span>
+      <a href="#/my-info">${user}</a>
       <a href=${user ? "#/logout" : "#/login"}>${user ? "Logout" : "Login"}</a>
 		`;
 	}
@@ -1140,13 +1140,12 @@ class MyInfoComponent extends __WEBPACK_IMPORTED_MODULE_0__framework_Component__
 		const { myInfo } = this.state;
 
     return `
-			<h2>My Info</h2>
-			<p>Username: ${myInfo.username}</p>
+			<h2>Username: ${myInfo.username}</h2>
 			<p>UUID: ${myInfo.uuid}</p>
 			<p>Email: ${myInfo.email}</p>
 			<p>Created at: ${myInfo.created_at}</p>
 			<p>Last login: ${myInfo.last_login}</p>
-			<button id="dashboard-btn" type="button">Dashboard</button>
+			<button class="btn btn-wide" id="dashboard-btn" type="button">Dashboard</button>
     `;
   }
 }

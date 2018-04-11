@@ -44,6 +44,12 @@ body {
   }
 }
 
+@media screen and (min-width: 481px) and (max-width: 580px) {
+  .logo {
+    display: none;
+  }
+}
+
 @media screen and (min-width: 481px) and (max-width: 960px) {
   header, main, footer {
     margin-left: 0;
@@ -108,8 +114,12 @@ strong {
   }
 }
 
+.logo-wrapper {
+  max-width: 68px;
+}
+
 .logo {
-  width: 30%;
+  width: 100%;
 }
 
 .lbl {
@@ -123,7 +133,7 @@ strong {
 
   a {
     color: $fg-color-header;
-    text-decoration: none;
+    // text-decoration: none;
   }
 
   a:hover {
@@ -222,5 +232,18 @@ strong {
     border-radius: 5px;
     padding: 5px;
     margin: 3px 0 20px 0;
+  }
+}
+
+.my-info-container {
+	display: flex;
+	flex-direction: column;
+	max-width: 320px;
+  margin: 120px auto;
+  text-align: center;
+  
+  p {
+    font-size: 9pt;
+    margin: 20px 0 10px 0;
   }
 }

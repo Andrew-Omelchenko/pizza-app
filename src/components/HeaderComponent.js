@@ -19,7 +19,7 @@ class HeaderComponent extends Component {
     const htmlString = `
 			<div class="flex-container header">
 				<div class="lbl" id="clock-placeholder"></div>
-				<div class="flex-container center">
+				<div class="flex-container center logo-wrapper">
 					<img class="logo" src="./img/pizza-cat.png" alt="logo">
 				</div>
 				<div class="lbl" id="options-placeholder"></div>
