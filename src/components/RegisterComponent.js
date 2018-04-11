@@ -11,7 +11,6 @@ class RegisterComponent extends Component {
 
 		this.host = document.createElement("div");
 		this.host.classList.add("register-container");
-		this.host.addEventListener("click", this.handleClick);
 		this.host.addEventListener("submit", this.handleSubmit);
 
 		AUTH_HTTP_SERVICE.getStores()
@@ -19,12 +18,6 @@ class RegisterComponent extends Component {
 				const options = data.answer.map(store => `<option value="${store.id}">${store.name}</option>`).join("");
 				this.updateState({ options });
 			});
-	}
-
-	handleClick(ev) {
-		if (ev.target.id === "go-to-login-page-btn") {
-			window.location.hash = "/login";
-		}
 	}
 
 	handleSubmit(ev) {
@@ -106,8 +99,7 @@ class RegisterComponent extends Component {
 					placeholder="Enter password for selected store..."  
 					required
 					value="">
-				<button id="register-btn" type="submit">Register</button>
-				<button id="go-to-login-page-btn" type="button">Go to login page</button>
+				<button id="register-btn" type="submit">Submit</button>
 			</form>
     `;
 	}

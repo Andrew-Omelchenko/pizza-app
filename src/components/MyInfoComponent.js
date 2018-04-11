@@ -24,11 +24,8 @@ class MyInfoComponent extends Component {
 	}
 
 	handleClick(ev) {
-		if (ev.target.id === "go-to-app-btn") {
+		if (ev.target.id === "dashboard-btn") {
 			window.location.hash = "/";
-		}
-		if (ev.target.id === "logout-btn") {
-			window.location.hash = "/logout";
 		}
 	}
 
@@ -42,8 +39,7 @@ class MyInfoComponent extends Component {
 			<p>Email: ${myInfo.email}</p>
 			<p>Created at: ${myInfo.created_at}</p>
 			<p>Last login: ${myInfo.last_login}</p>
-			<button id="go-to-app-btn" type="button">Go to Application</button>
-			<button id="logout-btn" type="button">Logout</button>
+			<button id="dashboard-btn" type="button">Dashboard</button>
     `;
   }
 }

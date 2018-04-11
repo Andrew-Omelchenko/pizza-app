@@ -548,7 +548,7 @@ class Router extends __WEBPACK_IMPORTED_MODULE_0__Component__["a" /* default */]
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_AuthService__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_AppEntry__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Dashboard__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Login__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_Register__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_MyInfo__ = __webpack_require__(18);
@@ -565,7 +565,7 @@ const routes = [
   },
   {
 		href: "/",
-		component: __WEBPACK_IMPORTED_MODULE_1__components_AppEntry__["a" /* default */],
+		component: __WEBPACK_IMPORTED_MODULE_1__components_Dashboard__["a" /* default */],
 		authorized: __WEBPACK_IMPORTED_MODULE_0__services_AuthService__["a" /* AUTH_SERVICE */].isAuthorized
 	},
   {
@@ -586,7 +586,7 @@ const routes = [
 		onEnter: navigateTo => {
       // console.log("Inside onEnter()");
 			__WEBPACK_IMPORTED_MODULE_0__services_AuthService__["a" /* AUTH_SERVICE */].clearStorage();
-      navigateTo("/");
+      navigateTo("/login");
     }
 	}
 ];
@@ -600,19 +600,19 @@ const routes = [
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__framework_Component__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__HeaderComponent__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__AppEntryComponent__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__DashboardComponent__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__FooterComponent__ = __webpack_require__(4);
 
 
 
 
 
-class AppEntry extends __WEBPACK_IMPORTED_MODULE_0__framework_Component__["a" /* default */] {
+class Dashboard extends __WEBPACK_IMPORTED_MODULE_0__framework_Component__["a" /* default */] {
   constructor(props) {
     super(props);
 
     this.headerComponent = new __WEBPACK_IMPORTED_MODULE_1__HeaderComponent__["a" /* default */]();
-		this.appEntryComponent = new __WEBPACK_IMPORTED_MODULE_2__AppEntryComponent__["a" /* default */]();
+		this.dashboardComponent = new __WEBPACK_IMPORTED_MODULE_2__DashboardComponent__["a" /* default */]();
 		this.footerComponent = new __WEBPACK_IMPORTED_MODULE_3__FooterComponent__["a" /* default */]();
 
     this.host = document.createElement("div");
@@ -622,13 +622,13 @@ class AppEntry extends __WEBPACK_IMPORTED_MODULE_0__framework_Component__["a" /*
   render() {
     return [
       this.headerComponent.update({}),
-      this.appEntryComponent.update({}),
+      this.dashboardComponent.update({}),
       this.footerComponent.update({})
     ];
   }
 }
 
-/* harmony default export */ __webpack_exports__["a"] = (AppEntry);
+/* harmony default export */ __webpack_exports__["a"] = (Dashboard);
 
 /***/ }),
 /* 11 */
@@ -717,7 +717,7 @@ class Options extends __WEBPACK_IMPORTED_MODULE_0__framework_Component__["a" /* 
     return `
       <i class="fa fa-user fa-fw label" aria-hidden="true"></i>
       <span>${user}</span>
-      <a href=${user ? "#/logout" : "#/login"}>${user ? "Logout" : "Login Page"}</a>
+      <a href=${user ? "#/logout" : "#/login"}>${user ? "Logout" : "Login"}</a>
 		`;
 	}
 }
@@ -732,12 +732,12 @@ class Options extends __WEBPACK_IMPORTED_MODULE_0__framework_Component__["a" /* 
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__framework_Component__ = __webpack_require__(0);
 
 
-class AppEntryComponent extends __WEBPACK_IMPORTED_MODULE_0__framework_Component__["a" /* default */] {
+class DashboardComponent extends __WEBPACK_IMPORTED_MODULE_0__framework_Component__["a" /* default */] {
 	constructor(props) {
 		super(props);
 
 		this.host = document.createElement("div");
-		this.host.classList.add("app-container");
+		this.host.classList.add("dashboard-container");
 	}
 
 	render() {
@@ -747,7 +747,7 @@ class AppEntryComponent extends __WEBPACK_IMPORTED_MODULE_0__framework_Component
 	}
 }
 
-/* harmony default export */ __webpack_exports__["a"] = (AppEntryComponent);
+/* harmony default export */ __webpack_exports__["a"] = (DashboardComponent);
 
 /***/ }),
 /* 14 */
@@ -810,7 +810,7 @@ class LoginComponent extends __WEBPACK_IMPORTED_MODULE_0__framework_Component__[
   }
 
   handleClick(ev) {
-		if (ev.target.id === "go-to-register-page-btn") {
+		if (ev.target.id === "register-btn") {
 			window.location.hash = "/register";
 		}
 	}
@@ -863,8 +863,8 @@ class LoginComponent extends __WEBPACK_IMPORTED_MODULE_0__framework_Component__[
           placeholder="Enter your password..." 
           required 
           value="">
-        <button id="login-btn" type="submit">Login</button>
-        <button id="go-to-register-page-btn" type="button">Go to register page</button>
+        <button id="submit-btn" type="submit">Submit</button>
+        <button id="register-btn" type="button">Register</button>
       </form>
     `;
   }
@@ -929,7 +929,6 @@ class RegisterComponent extends __WEBPACK_IMPORTED_MODULE_0__framework_Component
 
 		this.host = document.createElement("div");
 		this.host.classList.add("register-container");
-		this.host.addEventListener("click", this.handleClick);
 		this.host.addEventListener("submit", this.handleSubmit);
 
 		__WEBPACK_IMPORTED_MODULE_1__services_AuthHttpService__["a" /* AUTH_HTTP_SERVICE */].getStores()
@@ -937,12 +936,6 @@ class RegisterComponent extends __WEBPACK_IMPORTED_MODULE_0__framework_Component
 				const options = data.answer.map(store => `<option value="${store.id}">${store.name}</option>`).join("");
 				this.updateState({ options });
 			});
-	}
-
-	handleClick(ev) {
-		if (ev.target.id === "go-to-login-page-btn") {
-			window.location.hash = "/login";
-		}
 	}
 
 	handleSubmit(ev) {
@@ -1024,8 +1017,7 @@ class RegisterComponent extends __WEBPACK_IMPORTED_MODULE_0__framework_Component
 					placeholder="Enter password for selected store..."  
 					required
 					value="">
-				<button id="register-btn" type="submit">Register</button>
-				<button id="go-to-login-page-btn" type="button">Go to login page</button>
+				<button id="register-btn" type="submit">Submit</button>
 			</form>
     `;
 	}
@@ -1103,11 +1095,8 @@ class MyInfoComponent extends __WEBPACK_IMPORTED_MODULE_0__framework_Component__
 	}
 
 	handleClick(ev) {
-		if (ev.target.id === "go-to-app-btn") {
+		if (ev.target.id === "dashboard-btn") {
 			window.location.hash = "/";
-		}
-		if (ev.target.id === "logout-btn") {
-			window.location.hash = "/logout";
 		}
 	}
 
@@ -1121,8 +1110,7 @@ class MyInfoComponent extends __WEBPACK_IMPORTED_MODULE_0__framework_Component__
 			<p>Email: ${myInfo.email}</p>
 			<p>Created at: ${myInfo.created_at}</p>
 			<p>Last login: ${myInfo.last_login}</p>
-			<button id="go-to-app-btn" type="button">Go to Application</button>
-			<button id="logout-btn" type="button">Logout</button>
+			<button id="dashboard-btn" type="button">Dashboard</button>
     `;
   }
 }

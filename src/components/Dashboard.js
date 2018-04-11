@@ -1,14 +1,14 @@
 import Component from "../framework/Component";
 import HeaderComponent from "./HeaderComponent";
-import AppEntryComponent from "./AppEntryComponent";
+import DashboardComponent from "./DashboardComponent";
 import FooterComponent from "./FooterComponent";
 
-class AppEntry extends Component {
+class Dashboard extends Component {
   constructor(props) {
     super(props);
 
     this.headerComponent = new HeaderComponent();
-		this.appEntryComponent = new AppEntryComponent();
+		this.dashboardComponent = new DashboardComponent();
 		this.footerComponent = new FooterComponent();
 
     this.host = document.createElement("div");
@@ -18,10 +18,10 @@ class AppEntry extends Component {
   render() {
     return [
       this.headerComponent.update({}),
-      this.appEntryComponent.update({}),
+      this.dashboardComponent.update({}),
       this.footerComponent.update({})
     ];
   }
 }
 
-export default AppEntry;
+export default Dashboard;

@@ -15,7 +15,7 @@ class LoginComponent extends Component {
   }
 
   handleClick(ev) {
-		if (ev.target.id === "go-to-register-page-btn") {
+		if (ev.target.id === "register-btn") {
 			window.location.hash = "/register";
 		}
 	}
@@ -68,8 +68,8 @@ class LoginComponent extends Component {
           placeholder="Enter your password..." 
           required 
           value="">
-        <button id="login-btn" type="submit">Login</button>
-        <button id="go-to-register-page-btn" type="button">Go to register page</button>
+        <button id="submit-btn" type="submit">Submit</button>
+        <button id="register-btn" type="button">Register</button>
       </form>
     `;
   }

@@ -27,7 +27,7 @@ class Options extends Component {
     return `
       <i class="fa fa-user fa-fw label" aria-hidden="true"></i>
       <span>${user}</span>
-      <a href=${user ? "#/logout" : "#/login"}>${user ? "Logout" : "Login Page"}</a>
+      <a href=${user ? "#/logout" : "#/login"}>${user ? "Logout" : "Login"}</a>
 		`;
 	}
 }

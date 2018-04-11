@@ -1,5 +1,5 @@
 import { AUTH_SERVICE } from "./services/AuthService";
-import AppEntry from "./components/AppEntry";
+import Dashboard from "./components/Dashboard";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import MyInfo from "./components/MyInfo";
@@ -11,7 +11,7 @@ const routes = [
   },
   {
 		href: "/",
-		component: AppEntry,
+		component: Dashboard,
 		authorized: AUTH_SERVICE.isAuthorized
 	},
   {
@@ -32,7 +32,7 @@ const routes = [
 		onEnter: navigateTo => {
       // console.log("Inside onEnter()");
 			AUTH_SERVICE.clearStorage();
-      navigateTo("/");
+      navigateTo("/login");
     }
 	}
 ];

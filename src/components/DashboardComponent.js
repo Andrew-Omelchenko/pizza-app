@@ -1,11 +1,11 @@
 import Component from "../framework/Component";
 
-class AppEntryComponent extends Component {
+class DashboardComponent extends Component {
 	constructor(props) {
 		super(props);
 
 		this.host = document.createElement("div");
-		this.host.classList.add("app-container");
+		this.host.classList.add("dashboard-container");
 	}
 
 	render() {
@@ -15,4 +15,4 @@ class AppEntryComponent extends Component {
 	}
 }
 
-export default AppEntryComponent;
+export default DashboardComponent;
