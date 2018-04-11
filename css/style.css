@@ -277,7 +277,6 @@ strong {
 .img-container {
   border-radius: 50%;
   border: 3px solid transparent;
-  background: url("../img/wood.png");
   margin-top: 10px; }
 
 .details {

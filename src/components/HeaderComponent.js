@@ -20,7 +20,7 @@ class HeaderComponent extends Component {
 			<div class="flex-container header">
 				<div class="lbl" id="clock-placeholder"></div>
 				<div class="flex-container center">
-					<img class="logo" src="../img/pizza-cat.png" alt="logo">
+					<img class="logo" src="../img/cat.png" alt="logo">
 				</div>
 				<div class="lbl" id="options-placeholder"></div>
 			</div>
