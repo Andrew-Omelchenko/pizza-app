@@ -281,6 +281,7 @@ const AUTH_SERVICE = new AuthService();
 /* harmony export (immutable) */ __webpack_exports__["a"] = AUTH_SERVICE;
 
 
+
 /***/ }),
 /* 3 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -333,6 +334,7 @@ class HeaderComponent extends __WEBPACK_IMPORTED_MODULE_1__framework_Component__
 
 /* harmony default export */ __webpack_exports__["a"] = (HeaderComponent);
 
+
 /***/ }),
 /* 4 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -366,6 +368,7 @@ class FooterComponent extends __WEBPACK_IMPORTED_MODULE_0__framework_Component__
 
 /* harmony default export */ __webpack_exports__["a"] = (FooterComponent);
 
+
 /***/ }),
 /* 5 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -387,14 +390,13 @@ const API = {
 /* harmony export (immutable) */ __webpack_exports__["a"] = API;
 
 
-const STATUS_CODES = {
-  OK: "200",
-  BAD_REQUEST: "400",
-  UNAUTHORIZED: "401",
-  FORBIDDEN: "403",
-  NOT_FOUND: "404"
-};
-/* unused harmony export STATUS_CODES */
+// export const STATUS_CODES = {
+//   OK: "200",
+//   BAD_REQUEST: "400",
+//   UNAUTHORIZED: "401",
+//   FORBIDDEN: "403",
+//   NOT_FOUND: "404"
+// };
 
 
 /***/ }),
@@ -445,6 +447,7 @@ class AuthHttpService {
 
 const AUTH_HTTP_SERVICE = new AuthHttpService();
 /* harmony export (immutable) */ __webpack_exports__["a"] = AUTH_HTTP_SERVICE;
+
 
 
 /***/ }),
@@ -547,6 +550,7 @@ class Router extends __WEBPACK_IMPORTED_MODULE_0__Component__["a" /* default */]
 
 /* harmony default export */ __webpack_exports__["a"] = (Router);
 
+
 /***/ }),
 /* 9 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -598,6 +602,7 @@ const routes = [
 
 /* harmony default export */ __webpack_exports__["a"] = (routes);
 
+
 /***/ }),
 /* 10 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -634,6 +639,7 @@ class Dashboard extends __WEBPACK_IMPORTED_MODULE_0__framework_Component__["a" /
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (Dashboard);
+
 
 /***/ }),
 /* 11 */
@@ -685,6 +691,7 @@ class Clock extends __WEBPACK_IMPORTED_MODULE_0__framework_Component__["a" /* de
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (Clock);
+
 
 /***/ }),
 /* 12 */
@@ -745,6 +752,7 @@ class Options extends __WEBPACK_IMPORTED_MODULE_0__framework_Component__["a" /* 
 
 /* harmony default export */ __webpack_exports__["a"] = (Options);
 
+
 /***/ }),
 /* 13 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -801,6 +809,7 @@ class DashboardComponent extends __WEBPACK_IMPORTED_MODULE_0__framework_Componen
 
 /* harmony default export */ __webpack_exports__["a"] = (DashboardComponent);
 
+
 /***/ }),
 /* 14 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -837,6 +846,7 @@ class Login extends __WEBPACK_IMPORTED_MODULE_0__framework_Component__["a" /* de
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (Login);
+
 
 /***/ }),
 /* 15 */
@@ -920,6 +930,7 @@ class LoginComponent extends __WEBPACK_IMPORTED_MODULE_0__framework_Component__[
 
 /* harmony default export */ __webpack_exports__["a"] = (LoginComponent);
 
+
 /***/ }),
 /* 16 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -956,6 +967,7 @@ class Register extends __WEBPACK_IMPORTED_MODULE_0__framework_Component__["a" /*
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (Register);
+
 
 /***/ }),
 /* 17 */
@@ -1094,6 +1106,7 @@ class RegisterComponent extends __WEBPACK_IMPORTED_MODULE_0__framework_Component
 
 /* harmony default export */ __webpack_exports__["a"] = (RegisterComponent);
 
+
 /***/ }),
 /* 18 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -1130,6 +1143,7 @@ class MyInfo extends __WEBPACK_IMPORTED_MODULE_0__framework_Component__["a" /* d
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (MyInfo);
+
 
 /***/ }),
 /* 19 */
@@ -1184,6 +1198,7 @@ class MyInfoComponent extends __WEBPACK_IMPORTED_MODULE_0__framework_Component__
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (MyInfoComponent);
+
 
 /***/ })
 /******/ ]);
