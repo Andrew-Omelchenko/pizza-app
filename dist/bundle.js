@@ -855,7 +855,14 @@ class LoginComponent extends __WEBPACK_IMPORTED_MODULE_0__framework_Component__[
     this.host = document.createElement("div");
     this.host.classList.add("login-container");
 
+    this.host.addEventListener("focus", this.handleFocus, true);
     this.host.addEventListener("submit", this.handleSubmit);
+  }
+
+  handleFocus(ev) {
+    if (ev.target.id === "username" || ev.target.id === "password") {
+      document.getElementById("alert-placeholder").innerHTML = "";
+    }
   }
 
   handleSubmit(ev) {
@@ -873,20 +880,21 @@ class LoginComponent extends __WEBPACK_IMPORTED_MODULE_0__framework_Component__[
           console.log(__WEBPACK_IMPORTED_MODULE_1__services_AuthService__["a" /* AUTH_SERVICE */].claims);
           console.log(__WEBPACK_IMPORTED_MODULE_1__services_AuthService__["a" /* AUTH_SERVICE */].isAuthorized());
 					window.location.hash = "/my-info";
-				}
+        }
       })
       .catch(err => {
-        console.log(err);
+        document.getElementById("alert-placeholder").innerHTML = err.answer.error;
       });
   }
 
   render() {
     return `
       <form class="login-form">
+        <p class="alert-txt" id="alert-placeholder"></p>
         <label for="username">Username: </label>
         <input 
           name="username"
-          class="username-fld" 
+          class="fld" 
           id="username" 
           type="text" 
           minlength="2" 
@@ -897,7 +905,7 @@ class LoginComponent extends __WEBPACK_IMPORTED_MODULE_0__framework_Component__[
         <label for="password">Password: </label>
         <input 
           name="password" 
-          class="password-fld"
+          class="fld"
           id="password" 
           type="password" 
           minlength="8" 
@@ -969,6 +977,8 @@ class RegisterComponent extends __WEBPACK_IMPORTED_MODULE_0__framework_Component
 
 		this.host = document.createElement("div");
 		this.host.classList.add("register-container");
+
+		this.host.addEventListener("focus", this.handleFocus, true);
 		this.host.addEventListener("submit", this.handleSubmit);
 
 		__WEBPACK_IMPORTED_MODULE_1__services_AuthHttpService__["a" /* AUTH_HTTP_SERVICE */].getStores()
@@ -977,6 +987,19 @@ class RegisterComponent extends __WEBPACK_IMPORTED_MODULE_0__framework_Component
 				this.updateState({ options });
 			});
 	}
+
+	handleFocus(ev) {
+    if (
+			ev.target.id === "username" || 
+			ev.target.id === "password" ||
+			ev.target.id === "password_repeat" ||
+			ev.target.id === "email" ||
+			ev.target.id === "store_id" ||
+			ev.target.id === "store_password"
+		) {
+      document.getElementById("alert-placeholder").innerHTML = "";
+    }
+  }
 
 	handleSubmit(ev) {
 		ev.preventDefault();
@@ -999,7 +1022,7 @@ class RegisterComponent extends __WEBPACK_IMPORTED_MODULE_0__framework_Component
 				}
 			})
 			.catch(err => {
-        console.log(err);
+        document.getElementById("alert-placeholder").innerHTML = err.answer.error;
       });
 	}
 
@@ -1008,10 +1031,11 @@ class RegisterComponent extends __WEBPACK_IMPORTED_MODULE_0__framework_Component
 
 		return `
 			<form class="register-form">
+				<p class="alert-txt" id="alert-placeholder"></p>
 				<label for="username">Username:</label>
 				<input 
 					name="username" 
-					class="username-fld" 
+					class="fld" 
 					id="username" 
 					type="text" 
 					minlength="2" 
@@ -1022,7 +1046,7 @@ class RegisterComponent extends __WEBPACK_IMPORTED_MODULE_0__framework_Component
 				<label for="password">Password:</label>
 				<input 
 					name="password" 
-					class="password-fld" 
+					class="fld" 
 					id="password" 
 					type="password" 
 					minlength="8"
@@ -1032,7 +1056,7 @@ class RegisterComponent extends __WEBPACK_IMPORTED_MODULE_0__framework_Component
 				<label for="password_repeat">Confirm password:</label>
 				<input 
 					name="password_repeat" 
-					class="password-repeat-fld" 
+					class="fld" 
 					id="password_repeat" 
 					type="password" 
 					minlength="8" 
@@ -1042,20 +1066,20 @@ class RegisterComponent extends __WEBPACK_IMPORTED_MODULE_0__framework_Component
 				<label for="email">Email:</label>
 				<input 
 					name="email" 
-					class="email-fld" 
+					class="fld" 
 					id="email" 
 					type="email"
 					placeholder="Enter email address..." 
 					required
 					value="">
 				<label for="store_id">Choose your store:</label>
-				<select name="store_id" class="store-id-fld" id="store_id" required>
+				<select name="store_id" class="fld" id="store_id" required>
 					${options}
 				</select>
 				<label for="store_password">Store password:</label>
 				<input 
 					name="store_password" 
-					class="store-password-fld"
+					class="fld"
 					id="store_password" 
 					type="password" 
 					minlength="8"

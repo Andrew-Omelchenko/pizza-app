@@ -11,6 +11,8 @@ class RegisterComponent extends Component {
 
 		this.host = document.createElement("div");
 		this.host.classList.add("register-container");
+
+		this.host.addEventListener("focus", this.handleFocus, true);
 		this.host.addEventListener("submit", this.handleSubmit);
 
 		AUTH_HTTP_SERVICE.getStores()
@@ -19,6 +21,19 @@ class RegisterComponent extends Component {
 				this.updateState({ options });
 			});
 	}
+
+	handleFocus(ev) {
+    if (
+			ev.target.id === "username" || 
+			ev.target.id === "password" ||
+			ev.target.id === "password_repeat" ||
+			ev.target.id === "email" ||
+			ev.target.id === "store_id" ||
+			ev.target.id === "store_password"
+		) {
+      document.getElementById("alert-placeholder").innerHTML = "";
+    }
+  }
 
 	handleSubmit(ev) {
 		ev.preventDefault();
@@ -41,7 +56,7 @@ class RegisterComponent extends Component {
 				}
 			})
 			.catch(err => {
-        console.log(err);
+        document.getElementById("alert-placeholder").innerHTML = err.answer.error;
       });
 	}
 
@@ -50,10 +65,11 @@ class RegisterComponent extends Component {
 
 		return `
 			<form class="register-form">
+				<p class="alert-txt" id="alert-placeholder"></p>
 				<label for="username">Username:</label>
 				<input 
 					name="username" 
-					class="username-fld" 
+					class="fld" 
 					id="username" 
 					type="text" 
 					minlength="2" 
@@ -64,7 +80,7 @@ class RegisterComponent extends Component {
 				<label for="password">Password:</label>
 				<input 
 					name="password" 
-					class="password-fld" 
+					class="fld" 
 					id="password" 
 					type="password" 
 					minlength="8"
@@ -74,7 +90,7 @@ class RegisterComponent extends Component {
 				<label for="password_repeat">Confirm password:</label>
 				<input 
 					name="password_repeat" 
-					class="password-repeat-fld" 
+					class="fld" 
 					id="password_repeat" 
 					type="password" 
 					minlength="8" 
@@ -84,20 +100,20 @@ class RegisterComponent extends Component {
 				<label for="email">Email:</label>
 				<input 
 					name="email" 
-					class="email-fld" 
+					class="fld" 
 					id="email" 
 					type="email"
 					placeholder="Enter email address..." 
 					required
 					value="">
 				<label for="store_id">Choose your store:</label>
-				<select name="store_id" class="store-id-fld" id="store_id" required>
+				<select name="store_id" class="fld" id="store_id" required>
 					${options}
 				</select>
 				<label for="store_password">Store password:</label>
 				<input 
 					name="store_password" 
-					class="store-password-fld"
+					class="fld"
 					id="store_password" 
 					type="password" 
 					minlength="8"

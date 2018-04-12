@@ -191,19 +191,18 @@ strong {
   padding: 10px;
 }
 
-.login-form {
-	display: flex;
+.login-form,
+.register-form {
+  display: flex;
 	flex-direction: column;
-	max-width: 320px;
-  margin: 120px auto;
-
+  max-width: 320px;
+  
   label {
     font-size: 9pt;
     font-weight: bold;
   }
-  
-  .username-fld,
-  .password-fld {
+
+  .fld {
     font-size: 14pt;
     border-radius: 5px;
     padding: 5px;
@@ -211,28 +210,12 @@ strong {
   }
 }
 
+.login-form {
+  margin: 120px auto;
+}
+
 .register-form {
-	display: flex;
-	flex-direction: column;
-	max-width: 320px;
   margin: 48px auto;
-  
-	label {
-		font-size: 9pt;
-    font-weight: bold;
-  }
-  
-  .username-fld,
-  .password-fld,
-  .password-repeat-fld,
-  .email-fld,
-  .store-id-fld,
-  .store-password-fld {
-    font-size: 14pt;
-    border-radius: 5px;
-    padding: 5px;
-    margin: 3px 0 20px 0;
-  }
 }
 
 .my-info-container {
@@ -246,4 +229,11 @@ strong {
     font-size: 9pt;
     margin: 20px 0 10px 0;
   }
+}
+
+.alert-txt {
+  font-size: 10pt;
+  text-align: center;
+  color: $fg-color-alert;
+  margin: 20px 0 10px 0;
 }

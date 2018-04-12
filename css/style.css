@@ -297,39 +297,27 @@ strong {
 .padded {
   padding: 10px; }
 
-.login-form {
+.login-form,
+.register-form {
   display: flex;
   flex-direction: column;
-  max-width: 320px;
-  margin: 120px auto; }
-  .login-form label {
+  max-width: 320px; }
+  .login-form label,
+  .register-form label {
     font-size: 9pt;
     font-weight: bold; }
-  .login-form .username-fld,
-  .login-form .password-fld {
+  .login-form .fld,
+  .register-form .fld {
     font-size: 14pt;
     border-radius: 5px;
     padding: 5px;
     margin: 3px 0 20px 0; }
 
+.login-form {
+  margin: 120px auto; }
+
 .register-form {
-  display: flex;
-  flex-direction: column;
-  max-width: 320px;
   margin: 48px auto; }
-  .register-form label {
-    font-size: 9pt;
-    font-weight: bold; }
-  .register-form .username-fld,
-  .register-form .password-fld,
-  .register-form .password-repeat-fld,
-  .register-form .email-fld,
-  .register-form .store-id-fld,
-  .register-form .store-password-fld {
-    font-size: 14pt;
-    border-radius: 5px;
-    padding: 5px;
-    margin: 3px 0 20px 0; }
 
 .my-info-container {
   display: flex;
@@ -340,3 +328,9 @@ strong {
   .my-info-container p {
     font-size: 9pt;
     margin: 20px 0 10px 0; }
+
+.alert-txt {
+  font-size: 10pt;
+  text-align: center;
+  color: red;
+  margin: 20px 0 10px 0; }
