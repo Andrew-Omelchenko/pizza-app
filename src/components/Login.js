@@ -8,8 +8,8 @@ class Login extends Component {
     super(props);
 
     this.headerComponent = new HeaderComponent();
-		this.loginComponent = new LoginComponent();
-		this.footerComponent = new FooterComponent();
+    this.loginComponent = new LoginComponent();
+    this.footerComponent = new FooterComponent();
 
     this.host = document.createElement("div");
     this.host.classList.add("container");

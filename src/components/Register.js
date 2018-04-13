@@ -8,8 +8,8 @@ class Register extends Component {
     super(props);
 
     this.headerComponent = new HeaderComponent();
-		this.registerComponent = new RegisterComponent();
-		this.footerComponent = new FooterComponent();
+    this.registerComponent = new RegisterComponent();
+    this.footerComponent = new FooterComponent();
 
     this.host = document.createElement("div");
     this.host.classList.add("container");

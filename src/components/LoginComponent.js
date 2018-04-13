@@ -23,7 +23,7 @@ class LoginComponent extends Component {
 
     const userData = {
       username: ev.target.username.value,
-			password: ev.target.password.value
+      password: ev.target.password.value
     };
 
     AUTH_SERVICE.login(userData)
@@ -32,7 +32,7 @@ class LoginComponent extends Component {
           console.log(AUTH_SERVICE.token);
           console.log(AUTH_SERVICE.claims);
           console.log(AUTH_SERVICE.isAuthorized());
-					window.location.hash = "/my-info";
+          window.location.hash = "/my-info";
         }
       })
       .catch(err => {

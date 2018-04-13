@@ -2,7 +2,7 @@ import Component from "../framework/Component";
 import { AUTH_SERVICE } from "../services/AuthService";
 
 class Options extends Component {
-	constructor(props) {
+  constructor(props) {
     super(props);
 
     let uname = "";
@@ -16,12 +16,12 @@ class Options extends Component {
       user: uname
     };
 
-		this.host = document.createElement("div");
+    this.host = document.createElement("div");
     this.host.classList.add("options");
 
-	}
+  }
 
-	render() {
+  render() {
     const { user } = this.state;
     
     let login = false;
@@ -44,8 +44,8 @@ class Options extends Component {
       <i class="fa fa-user fa-fw label" aria-hidden="true"></i>
       <a href="#/my-info">${user}</a>
       <a href="#/${href()}">${href().toUpperCase()}</a>
-		`;
-	}
+    `;
+  }
 }
 
 export default Options;
